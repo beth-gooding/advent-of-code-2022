@@ -3,17 +3,17 @@ import * as readline from 'node:readline/promises';
 
 const inputFile = './day01/input.txt';
 
-const dayOnePuzzleOne = async () => {
+const dayOnePuzzle = async () => {
     let inputInterface = readline.createInterface({
         input : f.createReadStream(inputFile)
     });
-    let elfWithMostCaloriesTotal = 0;
+    let topThreeElvesWithMostCaloriesTotal = [0, 0, 0];
     let currentElfCalories = 0;
-
+    
     for await (let calorieAmount of inputInterface) {
-        if (calorieAmount === '' && currentElfCalories > elfWithMostCaloriesTotal) {
-
-            elfWithMostCaloriesTotal = currentElfCalories;
+    let thirdHighestCalories = Math.min(...topThreeElvesWithMostCaloriesTotal);
+        if (calorieAmount === '' && currentElfCalories > thirdHighestCalories) {
+            topThreeElvesWithMostCaloriesTotal.splice(topThreeElvesWithMostCaloriesTotal.indexOf(thirdHighestCalories), 1, currentElfCalories);
             currentElfCalories = 0;
         } else if (calorieAmount === '') {
             currentElfCalories = 0;
@@ -22,7 +22,7 @@ const dayOnePuzzleOne = async () => {
         }
     }
 
-    return elfWithMostCaloriesTotal;
+    return topThreeElvesWithMostCaloriesTotal;
 }
 
-export default dayOnePuzzleOne;
+export default dayOnePuzzle;

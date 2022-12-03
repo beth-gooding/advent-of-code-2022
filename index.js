@@ -20,5 +20,6 @@ dayTwoPuzzle().then((answer) => {
 dayThreePuzzle().then((answer) => {
     console.log();
     console.log("Day three puzzle solutions:");
-    console.log(`The total priorities of the items found in both compartments of each rucksack is ${answer}`);
+    console.log(`The total priorities of the items found in both compartments of each rucksack is ${answer[0]}`);
+    console.log(`The total priorities of the items found in all rucksacks of each group is ${answer[1]}`);
 });

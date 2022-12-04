@@ -1,6 +1,7 @@
 import dayOnePuzzle from "./day01/solution.js";
 import dayTwoPuzzle from "./day02/solution.js";
 import dayThreePuzzle from "./day03/solution.js";
+import dayFourPuzzle from "./day04/solution.js";
 
 
 dayOnePuzzle().then((answer) => {
@@ -23,3 +24,10 @@ dayThreePuzzle().then((answer) => {
     console.log(`The total priorities of the items found in both compartments of each rucksack is ${answer[0]}`);
     console.log(`The total priorities of the items found in all rucksacks of each group is ${answer[1]}`);
 });
+
+dayFourPuzzle().then((answer) => {
+    console.log();
+    console.log("Day four puzzle solutions:");
+    console.log(`The number of pairs where one section assignment range is fully covered by another is ${answer[0]}`)
+    console.log(`The number of pairs where the two assignment ranges overlap is ${answer[1]}`)
+})

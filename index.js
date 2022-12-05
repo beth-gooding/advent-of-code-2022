@@ -36,6 +36,6 @@ dayFourPuzzle().then((answer) => {
 dayFivePuzzle().then((answer) => {
     console.log();
     console.log("Day five puzzle solutions:");
-    console.log(`Puzzle one answer is ${answer[0]}`)
-    console.log(`Puzzle two answer is ${answer[1]}`)
+    console.log(`The top crates of each stack using the CrateMover 9000 are ${answer[0]}`)
+    console.log(`The top crates of each stack using the CrateMover 9001 are ${answer[1]}`)
 })

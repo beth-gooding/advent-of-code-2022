@@ -7,17 +7,33 @@ const daySixPuzzle = async () => {
     let inputInterface = readline.createInterface({
         input : f.createReadStream(inputFile)
     });
-
-    
-    let puzzleOneAnswer = 0;
-    let puzzleTwoAnswer = 0;
-
-
+    let buffer; 
     for await (let line of inputInterface) {
-        console.log("Day 6 lines: ", line);
+        buffer = line;
     }
 
-    return [puzzleOneAnswer, puzzleTwoAnswer];
+    const processBuffer = (markerLength, bufferString) => {
+        let marker = [];
+        let markerCounter = 0;
+        for (let character of bufferString) {
+            markerCounter++;
+            if (marker.length < markerLength) {
+                marker.push(character);
+            } else {
+                marker.shift();
+                marker.push(character);
+            }
+            let uniquePacketCharacters = [...new Set(marker)];
+            if (uniquePacketCharacters.length === markerLength) {
+                return markerCounter;
+            }
+        }
+    }
+
+    let packetMarkerIndex = processBuffer(4, buffer);
+    let messageMarkerIndex = processBuffer(14, buffer);
+    
+    return [packetMarkerIndex, messageMarkerIndex];
 }
 
 export default daySixPuzzle;

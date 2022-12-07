@@ -4,6 +4,7 @@ import dayThreePuzzle from "./day03/solution.js";
 import dayFourPuzzle from "./day04/solution.js";
 import dayFivePuzzle from "./day05/solution.js";
 import daySixPuzzle from "./day06/solution.js";
+import daySevenPuzzle from "./day07/solution.js";
 
 
 await dayOnePuzzle().then((answer) => {
@@ -44,6 +45,13 @@ await dayFivePuzzle().then((answer) => {
 await daySixPuzzle().then((answer) => {
     console.log();
     console.log("Day six puzzle solutions:");
+    console.log(`The number of characters we need to process before we find the first packet marker is ${answer[0]}`)
+    console.log(`The number of characters we need to process before we find the first message marker is ${answer[1]}`)
+})
+
+await daySevenPuzzle().then((answer) => {
+    console.log();
+    console.log("Day seven puzzle solutions:");
     console.log(`The solution to puzzle one is ${answer[0]}`)
     console.log(`The solution to puzzle two is ${answer[1]}`)
 })

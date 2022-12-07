@@ -14,7 +14,14 @@ const daySevenPuzzle = async () => {
 
 
     for await (let line of inputInterface) {
-        console.log(line);
+        if (line.startsWith('$')) {
+            console.log('This line is a command', line);
+        } else if (line.startsWith('dir')) {
+            console.log('This line is a directory:', line);
+        } else {
+            console.log('This line is a file:', line);
+            puzzleOneAnswer += Number(line.split(" ")[0]);
+        }
     }
 
 

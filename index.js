@@ -52,6 +52,6 @@ await daySixPuzzle().then((answer) => {
 await daySevenPuzzle().then((answer) => {
     console.log();
     console.log("Day seven puzzle solutions:");
-    console.log(`The solution to puzzle one is ${answer[0]}`)
+    console.log(`Not Solution: The sum of all the file sizes in total is ${answer[0]}`)
     console.log(`The solution to puzzle two is ${answer[1]}`)
 })

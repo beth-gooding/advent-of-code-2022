@@ -8,7 +8,7 @@ const dayEightPuzzle = async () => {
         input : f.createReadStream(inputFile)
     });
 
-    let puzzleTwoAnswer = 0;
+    let biggestScenicScore = 0;
 
     let treeMap = [];
 
@@ -54,9 +54,38 @@ const dayEightPuzzle = async () => {
             }
         }
     }
-    
+
+    // -4 so that you don't double count the corner trees
     let numberOfVisibleTrees = (2*(treeMap.length + treeMap[0].length)) + internalVisibleTrees.length - 4;
-    return [numberOfVisibleTrees, puzzleTwoAnswer];
+
+    for (let rowNumber = 1; rowNumber < treeMap.length - 1; rowNumber++) {
+        for (let columnNumber = 1; columnNumber < treeMap[0].length - 1; columnNumber++) {
+            let currentTree = treeMap[rowNumber][columnNumber];
+            let visibilityInEachDirection = [];
+            let leftVisibility = 0;
+            let rightVisibility = 0;
+            for (let moveLeft = 1; moveLeft < treeMap[0].length - (1 + columnNumber); moveLeft++) {
+                if (treeMap[rowNumber][columnNumber - moveLeft] < currentTree) {
+                    leftVisibility++;
+                } else {
+                    visibilityInEachDirection.push(leftVisibility);
+                    break;
+                }
+            }
+            for (let moveRight = 1; moveRight < treeMap[0].length - (1 + columnNumber); moveRight++) {
+                if (treeMap[rowNumber][columnNumber + moveRight] < currentTree) {
+                    rightVisibility++;
+                } else {
+                    visibilityInEachDirection.push(rightVisibility);
+                    break;
+                }
+            }
+            console.log(visibilityInEachDirection);
+
+        }
+
+    }
+    return [numberOfVisibleTrees, biggestScenicScore];
 }
 
 export default dayEightPuzzle;

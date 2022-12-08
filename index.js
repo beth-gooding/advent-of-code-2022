@@ -5,6 +5,7 @@ import dayFourPuzzle from "./day04/solution.js";
 import dayFivePuzzle from "./day05/solution.js";
 import daySixPuzzle from "./day06/solution.js";
 import daySevenPuzzle from "./day07/solution.js";
+import dayEightPuzzle from "./day08/solution.js";
 
 
 await dayOnePuzzle().then((answer) => {
@@ -52,6 +53,13 @@ await daySixPuzzle().then((answer) => {
 await daySevenPuzzle().then((answer) => {
     console.log();
     console.log("Day seven puzzle solutions:");
-    console.log(`Not Solution: The sum of all the file sizes in total is ${answer[0]}`)
-    console.log(`The solution to puzzle two is ${answer[1]}`)
+    console.log(`Not Solution: The sum of all the file sizes in total is ${answer[0]}`);
+    console.log(`The solution to puzzle two is ${answer[1]}`);
+})
+
+await dayEightPuzzle().then((answer) => {
+    console.log();
+    console.log("Day eight puzzle solutions:");
+    console.log(`The solution to puzzle one is ${answer[0]}`);
+    console.log(`The solution to puzzle two is ${answer[1]}`);
 })

@@ -64,7 +64,10 @@ const dayEightPuzzle = async () => {
             let visibilityInEachDirection = [];
             let leftVisibility = 0;
             let rightVisibility = 0;
-            for (let moveLeft = 1; moveLeft < treeMap[0].length - (1 + columnNumber); moveLeft++) {
+            let upVisibility = 0;
+            let downVisibility = 0;
+
+            for (let moveLeft = 1; moveLeft < columnNumber; moveLeft++) {
                 if (treeMap[rowNumber][columnNumber - moveLeft] < currentTree) {
                     leftVisibility++;
                 } else {
@@ -72,6 +75,7 @@ const dayEightPuzzle = async () => {
                     break;
                 }
             }
+
             for (let moveRight = 1; moveRight < treeMap[0].length - (1 + columnNumber); moveRight++) {
                 if (treeMap[rowNumber][columnNumber + moveRight] < currentTree) {
                     rightVisibility++;
@@ -80,7 +84,31 @@ const dayEightPuzzle = async () => {
                     break;
                 }
             }
+
+            for (let moveUp = 1; moveUp < rowNumber; moveUp++) {
+                if (treeMap[rowNumber - moveUp][columnNumber] < currentTree) {
+                    upVisibility++;
+                } else {
+                    visibilityInEachDirection.push(upVisibility);
+                    break;
+                }
+            }
+            
+            for (let moveDown = 1; moveDown < (treeMap.length - (1 + rowNumber)); moveDown++) {
+                if (treeMap[rowNumber + moveDown][columnNumber] < currentTree) {
+                    downVisibility++;
+                } else {
+                    visibilityInEachDirection.push(downVisibility);
+                    break;
+                }
+            }
+
             console.log(visibilityInEachDirection);
+            let currentTreeScenicScore = visibilityInEachDirection.reduce((a,b) => a*b, 1);
+            console.log(currentTreeScenicScore);
+            if (currentTreeScenicScore > biggestScenicScore) {
+                biggestScenicScore = currentTreeScenicScore;
+            }
 
         }
 

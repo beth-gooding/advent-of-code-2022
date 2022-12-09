@@ -61,5 +61,5 @@ await dayEightPuzzle().then((answer) => {
     console.log();
     console.log("Day eight puzzle solutions:");
     console.log(`The number of trees that are visible from outside the grid is ${answer[0]}`);
-    console.log(`The biggest scenic score possible from this grid of tress is ${answer[1]}`);
+    console.log(`The biggest scenic score possible from this grid of trees is ${answer[1]}`);
 })

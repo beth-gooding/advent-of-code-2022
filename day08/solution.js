@@ -1,5 +1,6 @@
 import * as f from 'fs';
 import * as readline from 'node:readline/promises';
+import { compileFunction } from 'vm';
 
 const inputFile = './day08/input.txt';
 
@@ -74,14 +75,22 @@ const dayEightPuzzle = async () => {
                     visibilityInEachDirection.push(leftVisibility);
                     break;
                 }
+
+                if (moveLeft === columnNumber -1) {
+                    visibilityInEachDirection.push(leftVisibility);
+                }
             }
 
-            for (let moveRight = 1; moveRight < treeMap[0].length - (1 + columnNumber); moveRight++) {
+            for (let moveRight = 1; moveRight < treeMap[0].length - (columnNumber); moveRight++) {
                 if (treeMap[rowNumber][columnNumber + moveRight] < currentTree) {
                     rightVisibility++;
                 } else {
                     visibilityInEachDirection.push(rightVisibility);
                     break;
+                }
+
+                if (moveRight === treeMap[0].length - (columnNumber) - 1) {
+                    visibilityInEachDirection.push(rightVisibility);
                 }
             }
 
@@ -92,24 +101,36 @@ const dayEightPuzzle = async () => {
                     visibilityInEachDirection.push(upVisibility);
                     break;
                 }
+
+                if (moveUp === rowNumber - 1) {
+                    visibilityInEachDirection.push(upVisibility);
+                }
             }
             
-            for (let moveDown = 1; moveDown < (treeMap.length - (1 + rowNumber)); moveDown++) {
+            for (let moveDown = 1; moveDown < (treeMap.length - (rowNumber)); moveDown++) {
                 if (treeMap[rowNumber + moveDown][columnNumber] < currentTree) {
                     downVisibility++;
                 } else {
                     visibilityInEachDirection.push(downVisibility);
                     break;
                 }
+
+                if (moveDown === (treeMap.length - (1 + rowNumber))) {
+                    visibilityInEachDirection.push(downVisibility);
+                }
             }
 
-            console.log(visibilityInEachDirection);
+            visibilityInEachDirection.length < 4 && console.log(rowNumber, columnNumber, visibilityInEachDirection);
             let currentTreeScenicScore = visibilityInEachDirection.reduce((a,b) => a*b, 1);
-            console.log(currentTreeScenicScore);
+
             if (currentTreeScenicScore > biggestScenicScore) {
                 biggestScenicScore = currentTreeScenicScore;
             }
 
+
+            // TO DO: For column 1, the information for leftVisibility is missing
+            // TO DO: For row 1, the information for upVisibility is missing
+            // TO DO: For (1,1) the info for leftVisibility and upVisibility is missing
         }
 
     }

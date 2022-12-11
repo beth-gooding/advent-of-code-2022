@@ -6,6 +6,7 @@ import dayFivePuzzle from "./day05/solution.js";
 import daySixPuzzle from "./day06/solution.js";
 import daySevenPuzzle from "./day07/solution.js";
 import dayEightPuzzle from "./day08/solution.js";
+import dayTenPuzzle from "./day10/solution.js";
 
 
 await dayOnePuzzle().then((answer) => {
@@ -62,4 +63,11 @@ await dayEightPuzzle().then((answer) => {
     console.log("Day eight puzzle solutions:");
     console.log(`The number of trees that are visible from outside the grid is ${answer[0]}`);
     console.log(`The biggest scenic score possible from this grid of trees is ${answer[1]}`);
+})
+
+await dayTenPuzzle().then((answer) => {
+    console.log();
+    console.log("Day ten puzzle solutions:");
+    console.log(`The answer to puzzle 1 is ${answer[0]}`);
+    console.log(`The answer to puzzle 2 is ${answer[1]}`);
 })

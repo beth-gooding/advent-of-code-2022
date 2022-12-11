@@ -119,7 +119,7 @@ const dayEightPuzzle = async () => {
                     visibilityInEachDirection.push(downVisibility);
                 }
             }
-
+            console.log(rowNumber, columnNumber, visibilityInEachDirection);
             let currentTreeScenicScore = visibilityInEachDirection.reduce((a,b) => a*b, 1);
             if (currentTreeScenicScore > biggestScenicScore) {
                 biggestScenicScore = currentTreeScenicScore;
@@ -127,6 +127,8 @@ const dayEightPuzzle = async () => {
         }
 
     }
+
+    // REMEMBER TO SET THE INPUT BACK TO THE CORRECT ACCOUNT!
     return [numberOfVisibleTrees, biggestScenicScore];
 }
 

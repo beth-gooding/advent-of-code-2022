@@ -59,9 +59,11 @@ const dayEightPuzzle = async () => {
     // -4 so that you don't double count the corner trees
     let numberOfVisibleTrees = (2*(treeMap.length + treeMap[0].length)) + internalVisibleTrees.length - 4;
 
+    // start from one and go to the second to last row/column because outside trees have a scenic score of 0
     for (let rowNumber = 1; rowNumber < treeMap.length - 1; rowNumber++) {
         for (let columnNumber = 1; columnNumber < treeMap[0].length - 1; columnNumber++) {
             let currentTree = treeMap[rowNumber][columnNumber];
+
             let visibilityInEachDirection = [];
             let leftVisibility = 0;
             let rightVisibility = 0;
@@ -69,57 +71,37 @@ const dayEightPuzzle = async () => {
             let downVisibility = 0;
 
             for (let moveLeft = 1; moveLeft <= columnNumber; moveLeft++) {
-                if (treeMap[rowNumber][columnNumber - moveLeft] < currentTree) {
-                    leftVisibility++;
-                } else {
+                leftVisibility++;
+                if (treeMap[rowNumber][columnNumber - moveLeft] >= currentTree || moveLeft === columnNumber) {
                     visibilityInEachDirection.push(leftVisibility);
                     break;
-                }
-
-                if (moveLeft === columnNumber) {
-                    visibilityInEachDirection.push(leftVisibility);
                 }
             }
 
             for (let moveRight = 1; moveRight < treeMap[0].length - (columnNumber); moveRight++) {
-                if (treeMap[rowNumber][columnNumber + moveRight] < currentTree) {
-                    rightVisibility++;
-                } else {
+                rightVisibility++;
+                if (treeMap[rowNumber][columnNumber + moveRight] >= currentTree || moveRight === treeMap[0].length - (columnNumber) - 1) {
                     visibilityInEachDirection.push(rightVisibility);
                     break;
-                }
-
-                if (moveRight === treeMap[0].length - (columnNumber) - 1) {
-                    visibilityInEachDirection.push(rightVisibility);
                 }
             }
 
             for (let moveUp = 1; moveUp <= rowNumber; moveUp++) {
-                if (treeMap[rowNumber - moveUp][columnNumber] < currentTree) {
-                    upVisibility++;
-                } else {
+                upVisibility++;
+                if (treeMap[rowNumber - moveUp][columnNumber] >= currentTree || moveUp === rowNumber) {
                     visibilityInEachDirection.push(upVisibility);
                     break;
-                }
-
-                if (moveUp === rowNumber) {
-                    visibilityInEachDirection.push(upVisibility);
                 }
             }
             
             for (let moveDown = 1; moveDown < (treeMap.length - (rowNumber)); moveDown++) {
-                if (treeMap[rowNumber + moveDown][columnNumber] < currentTree) {
-                    downVisibility++;
-                } else {
+                downVisibility++;
+                if (treeMap[rowNumber + moveDown][columnNumber] >= currentTree || moveDown === (treeMap.length - (1 + rowNumber))) {
                     visibilityInEachDirection.push(downVisibility);
                     break;
                 }
-
-                if (moveDown === (treeMap.length - (1 + rowNumber))) {
-                    visibilityInEachDirection.push(downVisibility);
-                }
             }
-            console.log(rowNumber, columnNumber, visibilityInEachDirection);
+
             let currentTreeScenicScore = visibilityInEachDirection.reduce((a,b) => a*b, 1);
             if (currentTreeScenicScore > biggestScenicScore) {
                 biggestScenicScore = currentTreeScenicScore;
@@ -127,8 +109,6 @@ const dayEightPuzzle = async () => {
         }
 
     }
-
-    // REMEMBER TO SET THE INPUT BACK TO THE CORRECT ACCOUNT!
     return [numberOfVisibleTrees, biggestScenicScore];
 }
 

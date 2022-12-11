@@ -68,7 +68,7 @@ const dayEightPuzzle = async () => {
             let upVisibility = 0;
             let downVisibility = 0;
 
-            for (let moveLeft = 1; moveLeft < columnNumber; moveLeft++) {
+            for (let moveLeft = 1; moveLeft <= columnNumber; moveLeft++) {
                 if (treeMap[rowNumber][columnNumber - moveLeft] < currentTree) {
                     leftVisibility++;
                 } else {
@@ -76,7 +76,7 @@ const dayEightPuzzle = async () => {
                     break;
                 }
 
-                if (moveLeft === columnNumber -1) {
+                if (moveLeft === columnNumber) {
                     visibilityInEachDirection.push(leftVisibility);
                 }
             }
@@ -94,7 +94,7 @@ const dayEightPuzzle = async () => {
                 }
             }
 
-            for (let moveUp = 1; moveUp < rowNumber; moveUp++) {
+            for (let moveUp = 1; moveUp <= rowNumber; moveUp++) {
                 if (treeMap[rowNumber - moveUp][columnNumber] < currentTree) {
                     upVisibility++;
                 } else {
@@ -102,7 +102,7 @@ const dayEightPuzzle = async () => {
                     break;
                 }
 
-                if (moveUp === rowNumber - 1) {
+                if (moveUp === rowNumber) {
                     visibilityInEachDirection.push(upVisibility);
                 }
             }
@@ -120,17 +120,10 @@ const dayEightPuzzle = async () => {
                 }
             }
 
-            visibilityInEachDirection.length < 4 && console.log(rowNumber, columnNumber, visibilityInEachDirection);
             let currentTreeScenicScore = visibilityInEachDirection.reduce((a,b) => a*b, 1);
-
             if (currentTreeScenicScore > biggestScenicScore) {
                 biggestScenicScore = currentTreeScenicScore;
             }
-
-
-            // TO DO: For column 1, the information for leftVisibility is missing
-            // TO DO: For row 1, the information for upVisibility is missing
-            // TO DO: For (1,1) the info for leftVisibility and upVisibility is missing
         }
 
     }
